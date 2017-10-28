@@ -1,5 +1,3 @@
-#include "stdafx.h"
-
 #include "siren.h"
 
 // Oodle function definitions
@@ -100,7 +98,7 @@ void Siren::Shutdown()
 uintptr_t Siren::Decompress(const uint8_t* Buffer, const uintptr_t BufferSize, uint8_t* OutputBuffer, const uintptr_t OutputBufferSize)
 {
 	// Safety checks
-	if (Buffer != nullptr && BufferSize > 0 && OutputBuffer != nullptr && OutputBufferSize > 0)
+	if (OodleLZ_Decompress != NULL && Buffer != nullptr && BufferSize > 0 && OutputBuffer != nullptr && OutputBufferSize > 0)
 	{
 		// Result size
 		intptr_t Result = 0;
@@ -108,11 +106,11 @@ uintptr_t Siren::Decompress(const uint8_t* Buffer, const uintptr_t BufferSize, u
 		// Compile time arch check
 		if (sizeof(uintptr_t) == 4)
 		{
-			Result = ((OodleLZ32_DecompressDef)OodleLZ_Decompress)((uint8_t*)Buffer, (int32_t)BufferSize, OutputBuffer, (int32_t)OutputBufferSize, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 3);
+			Result = (intptr_t)((OodleLZ32_DecompressDef)OodleLZ_Decompress)((uint8_t*)Buffer, (int32_t)BufferSize, OutputBuffer, (int32_t)OutputBufferSize, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 3);
 		}
 		else if (sizeof(uintptr_t) == 8)
 		{
-			Result = ((OodleLZ64_DecompressDef)OodleLZ_Decompress)((uint8_t*)Buffer, (int64_t)BufferSize, OutputBuffer, (int64_t)OutputBufferSize, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 3);
+			Result = (intptr_t)((OodleLZ64_DecompressDef)OodleLZ_Decompress)((uint8_t*)Buffer, (int64_t)BufferSize, OutputBuffer, (int64_t)OutputBufferSize, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 3);
 		}
 
 		// Determine success
@@ -126,7 +124,7 @@ uintptr_t Siren::Decompress(const uint8_t* Buffer, const uintptr_t BufferSize, u
 uintptr_t Siren::Compress(const uint8_t* Buffer, const uintptr_t BufferSize, uint8_t* OutputBuffer, const uintptr_t OutputBufferSize, SirenFormat Format, SirenCompressionLevel Level)
 {
 	// Safety checks
-	if (Buffer != nullptr && BufferSize > 0 && OutputBuffer != nullptr && OutputBufferSize > 0)
+	if (OodleLZ_Compress != NULL && Buffer != nullptr && BufferSize > 0 && OutputBuffer != nullptr && OutputBufferSize > 0)
 	{
 		// Result size
 		intptr_t Result = 0;
@@ -134,11 +132,11 @@ uintptr_t Siren::Compress(const uint8_t* Buffer, const uintptr_t BufferSize, uin
 		// Compile time arch check
 		if (sizeof(uintptr_t) == 4)
 		{
-			Result = ((OodleLZ32_CompressDef)OodleLZ_Compress)((int32_t)Format, (uint8_t*)Buffer, (int32_t)BufferSize, OutputBuffer, (int32_t)Level, NULL, NULL, NULL);
+			Result = (intptr_t)((OodleLZ32_CompressDef)OodleLZ_Compress)((int32_t)Format, (uint8_t*)Buffer, (int32_t)BufferSize, OutputBuffer, (int32_t)Level, NULL, NULL, NULL);
 		}
 		else if (sizeof(uintptr_t) == 8)
 		{
-			Result = ((OodleLZ64_CompressDef)OodleLZ_Compress)((int32_t)Format, (uint8_t*)Buffer, (int64_t)BufferSize, OutputBuffer, (int64_t)Level, NULL, NULL, NULL);
+			Result = (intptr_t)((OodleLZ64_CompressDef)OodleLZ_Compress)((int32_t)Format, (uint8_t*)Buffer, (int64_t)BufferSize, OutputBuffer, (int64_t)Level, NULL, NULL, NULL);
 		}
 
 		// Determine success
