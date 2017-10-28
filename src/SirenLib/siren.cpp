@@ -5,9 +5,9 @@
 // Oodle function definitions
 
 // Oodle compression routine definition, verified for Oodle v5 (x32) (All callbacks are unmarked and aren't needed)
-typedef int32_t(*OodleLZ32_CompressDef)(int32_t Format, unsigned char *Buffer, int32_t BufferSize, unsigned char *OutputBuffer, int32_t Level, void *a, void *b, void *c);
+typedef int32_t (*OodleLZ32_CompressDef)(int32_t Format, unsigned char *Buffer, int32_t BufferSize, unsigned char *OutputBuffer, int32_t Level, void *a, void *b, void *c);
 // Oodle compression routine definition, verified for Oodle v5 (x64) (All callbacks are unmarked and aren't needed)
-typedef int32_t(*OodleLZ64_CompressDef)(int32_t Format, unsigned char *Buffer, int64_t BufferSize, unsigned char *OutputBuffer, int64_t Level, void *a, void *b, void *c);
+typedef int64_t (*OodleLZ64_CompressDef)(int32_t Format, unsigned char *Buffer, int64_t BufferSize, unsigned char *OutputBuffer, int64_t Level, void *a, void *b, void *c);
 
 // Oodle decompression routine definition, verified for Oodle v5 (x32) (All callbacks are unmarked and aren't needed)
 typedef int32_t (*OodleLZ32_DecompressDef)(unsigned char *Buffer, int32_t BufferSize, unsigned char *OutputBuffer, int32_t OutputBufferSize, int32_t a, int32_t b, int32_t c, void *d, void *e, void *f, void *g, void *h, void *i, int32_t ThreadModule);
